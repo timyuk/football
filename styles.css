@@ -1,0 +1,129 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.bracket {
+    display: flex;
+    /*flex-direction: column;*/
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.round {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 15%;
+}
+.round_2 {
+    margin-right: 120px;
+}
+.round_4 {
+    margin-left: 120px;
+}
+.game {
+    position: relative;
+    width: 70%;
+    height: 100px;
+    margin: 10px;
+    border: 1px solid #333;
+    padding: 5%;
+    background-color: #fff;
+    transition: 0.3s;
+
+}
+.game_6{
+    margin-left: 250px;
+}
+.game_11{
+    margin-right: 250px;
+}
+.team {
+    position: absolute;
+    bottom: 10px;
+    height: 25px;
+    display: flex;
+    width: 90%;
+    left: 5%;
+
+}
+.team_home {
+    bottom: 45px;
+}
+
+.not_visible {
+    visibility: hidden;
+    background-color: red;
+}
+
+.flag {
+    height: 20px;
+    width: 30px;
+    background-size: cover;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+.country{
+    margin-left: 5px;
+}
+.score {
+    margin-left: auto;
+    margin-right: 0;
+}
+.winner {
+    border-bottom: 3px solid #87C38F ;
+}
+.loser {
+    border-bottom: 3px solid #EA868C;
+}
+
+.game_info {
+    font-size: 11px;
+}
+.game:hover{
+    cursor: pointer;
+    box-shadow: 0px 10px 25px -5px rgba(0,0,0,0.2);
+}
+
+.statistics{
+    height: 100px;
+    width: 100%;
+    background-color: #ddd;
+    margin-top: 10px;
+}
+
+.match_teams {
+    height: 50px;
+    background-color: #eee;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+
+}
+.match_teams > p{
+    position: absolute;
+    font-size: 30px;
+    height: 50px;
+    line-height: 50px;
+    margin: 0px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.vs_node {
+
+}
+.country_home_node {
+    right:53%;
+}
+.country_away_node {
+    left:53%;
+}
+svg {
+    position: absolute;
+}
