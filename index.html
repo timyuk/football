@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tournament Bracket</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="bracket">
+<!--        <div class="round">-->
+<!--            {% for game in games.1 %}-->
+<!--                <div class="game game_{{game.order}}" id = "game_{{game.order}}">-->
+<!--                    <div class="game_info">-->
+<!--                        <div class = 'phase'>-->
+<!--                            {{game.phase}}-->
+<!--                        </div>-->
+<!--                        <div class="date">-->
+<!--                            {{game.date}}-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="team {{game.status_home}} team_home">-->
+<!--                        <div class="flag" style="background-image: url('{{game.flag_home}}')"></div>-->
+<!--                        <div class="country">{{game.country_home}}</div>-->
+<!--                        <div class="score">{{game.score_home}}</div>-->
+<!--                    </div>-->
+<!--                    <div class="team {{game.status_away}}">-->
+<!--                        <div class="flag" style="background-image: url('{{game.flag_away}}')"></div>-->
+<!--                        <div class="country">{{game.country_away}}</div>-->
+<!--                        <div class="score">{{game.score_away}}</div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            {% endfor %}-->
+<!--        </div>-->
+
+<!--        <div class="round round_2">-->
+<!--            {% for game in games.2 %}-->
+<!--                <div class="game game_{{game.order}}" id = "game_{{game.order}}">-->
+<!--                    <div class="game_info">-->
+<!--                        <div class = 'phase'>-->
+<!--                            {{game.phase}}-->
+<!--                        </div>-->
+<!--                        <div class="date">-->
+<!--                            {{game.date}}-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="team {{game.status_home}} team_home">-->
+<!--                        <div class="flag" style="background-image: url('{{game.flag_home}}')"></div>-->
+<!--                        <div class="country">{{game.country_home}}</div>-->
+<!--                        <div class="score">{{game.score_home}}</div>-->
+<!--                    </div>-->
+<!--                    <div class="team {{game.status_away}}">-->
+<!--                        <div class="flag" style="background-image: url('{{game.flag_away}}')"></div>-->
+<!--                        <div class="country">{{game.country_away}}</div>-->
+<!--                        <div class="score">{{game.score_away}}</div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            {% endfor %}-->
+<!--        </div>-->
+
+<!--        <div class="round">-->
+<!--            <div class="game not_visible">-->
+<!--                <div class="team">Final Winner</div>-->
+<!--                <div class="team">Final Loser</div>-->
+<!--            </div>-->
+<!--            {% for game in games.3 %}-->
+<!--                <div class="game game_{{game.order}}" id = "game_{{game.order}}">-->
+<!--                    <div class="game_info">-->
+<!--                        <div class = 'phase'>-->
+<!--                            {{game.phase}}-->
+<!--                        </div>-->
+<!--                        <div class="date">-->
+<!--                            {{game.date}}-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="team {{game.status_home}} team_home">-->
+<!--                        <div class="flag" style="background-image: url('{{game.flag_home}}')"></div>-->
+<!--                        <div class="country">{{game.country_home}}</div>-->
+<!--                        <div class="score">{{game.score_home}}</div>-->
+<!--                    </div>-->
+<!--                    <div class="team {{game.status_away}}">-->
+<!--                        <div class="flag" style="background-image: url('{{game.flag_away}}')"></div>-->
+<!--                        <div class="country">{{game.country_away}}</div>-->
+<!--                        <div class="score">{{game.score_away}}</div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            {% endfor %}-->
+<!--        </div>-->
+
+<!--        <div class="round round_4">-->
+<!--            {% for game in games.4 %}-->
+<!--                <div class="game game_{{game.order}}" id = "game_{{game.order}}">-->
+<!--                    <div class="game_info">-->
+<!--                        <div class = 'phase'>-->
+<!--                            {{game.phase}}-->
+<!--                        </div>-->
+<!--                        <div class="date">-->
+<!--                            {{game.date}}-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="team {{game.status_home}} team_home">-->
+<!--                        <div class="flag" style="background-image: url('{{game.flag_home}}')"></div>-->
+<!--                        <div class="country">{{game.country_home}}</div>-->
+<!--                        <div class="score">{{game.score_home}}</div>-->
+<!--                    </div>-->
+<!--                    <div class="team {{game.status_away}}">-->
+<!--                        <div class="flag" style="background-image: url('{{game.flag_away}}')"></div>-->
+<!--                        <div class="country">{{game.country_away}}</div>-->
+<!--                        <div class="score">{{game.score_away}}</div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            {% endfor %}-->
+<!--        </div>-->
+
+<!--        <div class="round">-->
+<!--            {% for game in games.5 %}-->
+<!--                <div class="game game_{{game.order}}" id = "game_{{game.order}}">-->
+<!--                    <div class="game_info">-->
+<!--                        <div class = 'phase'>-->
+<!--                            {{game.phase}}-->
+<!--                        </div>-->
+<!--                        <div class="date">-->
+<!--                            {{game.date}}-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="team {{game.status_home}} team_home">-->
+<!--                        <div class="flag" style="background-image: url('{{game.flag_home}}')"></div>-->
+<!--                        <div class="country">{{game.country_home}}</div>-->
+<!--                        <div class="score">{{game.score_home}}</div>-->
+<!--                    </div>-->
+<!--                    <div class="team {{game.status_away}}">-->
+<!--                        <div class="flag" style="background-image: url('{{game.flag_away}}')"></div>-->
+<!--                        <div class="country">{{game.country_away}}</div>-->
+<!--                        <div class="score">{{game.score_away}}</div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            {% endfor %}-->
+<!--        </div>-->
+    </div>
+<!--    {% include 'main/includes/statistics.html' %}-->
+
+</body>
+<script>
+    let dimensions = []
+    // let l = JSON.parse('./data.json');
+    // console.log(l)
+    // let body = document.getElementsByTagName('body')[0]
+    // let svg_node = document.createElementNS('http://www.w3.org/2000/svg','svg');
+    // svg_node.setAttribute('width','100%')
+    // svg_node.setAttribute('height','100%')
+    // body.insertBefore(svg_node, body.firstChild)
+    //
+    // for (let i = 0; i < l.length; i++) {
+    //     console.log('game_' + l[i].order)
+    //     const current_node = document.getElementById('game_' + l[i].order)
+    //     var rect = current_node.getBoundingClientRect();
+    //     dimensions.push([(rect.right + rect.left)/2, (rect.top + rect.bottom)/2])
+    //     current_node.addEventListener('click', function () {
+    //         update_graphs(l[i])
+    //     })
+    // }
+    // render_line(dimensions[0], dimensions[4])
+    // render_line(dimensions[1], dimensions[4])
+    // render_line(dimensions[2], dimensions[6])
+    // render_line(dimensions[3], dimensions[6])
+    // render_line(dimensions[4], dimensions[5])
+    // render_line(dimensions[6], dimensions[5])
+    // render_line(dimensions[5], dimensions[7])
+    // render_line(dimensions[7], dimensions[10])
+    // render_line(dimensions[10], dimensions[9])
+    // render_line(dimensions[10], dimensions[11])
+    // render_line(dimensions[9], dimensions[12])
+    // render_line(dimensions[9], dimensions[13])
+    // render_line(dimensions[11], dimensions[14])
+    // render_line(dimensions[11], dimensions[15])
+    // function update_graphs(data){
+    //     const match_teams = document.getElementById('match_teams')
+    //     match_teams.innerHTML = '';
+    //     const country_home_node = document.createElement("p");
+    //     const country_away_node = document.createElement("p");
+    //     const vs_node = document.createElement("p");
+    //     country_home_node.innerText = data.country_home
+    //     country_away_node.innerText = data.country_away
+    //     vs_node.innerText = "vs"
+    //     vs_node.classList.add('vs_node')
+    //     country_home_node.classList.add('country_home_node')
+    //     country_away_node.classList.add('country_away_node')
+    //     match_teams.appendChild(country_home_node)
+    //     match_teams.appendChild(vs_node)
+    //     match_teams.appendChild(country_away_node)
+    // }
+    //
+    // function render_line(first_block, second_block){
+    //     x1 = first_block[0]
+    //     y1 = first_block[1]
+    //     x2 = second_block[0]
+    //     y2 = second_block[1]
+    //     let line_node = document.createElementNS('http://www.w3.org/2000/svg','line');
+    //     line_node.setAttribute('x1',x1)
+    //     line_node.setAttribute('y1',y1)
+    //     line_node.setAttribute('x2', x2)
+    //     line_node.setAttribute('y2', y2)
+    //     line_node.setAttribute('stroke', 'black')
+    //     svg_node.appendChild(line_node)
+    // }
+
+
+    fetch('./match_data.json')
+    .then((response) => console.log(response))
+
+</script>
+</html>
