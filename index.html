@@ -141,6 +141,9 @@
 
 </body>
 <script>
+    const response = fetch('./match_data.json')
+    const json = response.json()
+    console.log(json)
     let dimensions = []
     // let l = JSON.parse('./data.json');
     // console.log(l)
@@ -205,9 +208,7 @@
     // }
 
 
-    fetch('./match_data.json')
-    .then((response) => response.json())
-    .then((json) => console.log(json));
+
 
 </script>
 </html>
