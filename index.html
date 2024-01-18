@@ -141,28 +141,26 @@
 
 </body>
 <script>
-    fetch('./match_data.json')
-    .then((response) => response.json())
-    .then((json) => console.log(json));
-    const mydata = (async function some_func(){
+
+    const match_data = (async function some_func(){
         let response = await fetch('match_data.json')
         var match_data = response.json()
         return match_data
     })();
-    console.log(mydata)
+    console.log(match_data)
     //
     //
-    // var bracket_list = [[match_data[48], match_data[49], match_data[52], match_data[53]],
-    //     [[match_data[57], match_data[60], match_data[56]]],
-    //     [[match_data[63], match_data[62]]],
-    //     [match_data[59], match_data[61], match_data[58]],
-    //     [match_data[51], match_data[50], match_data[54], match_data[55]]]
-    // let i = 0;
-    //
-    // while (i < bracket_list.length) {
-    //     console.log(bracket_list[i]);
-    //     i++;
-    // }
+    var bracket_list = [[match_data[48], match_data[49], match_data[52], match_data[53]],
+        [[match_data[57], match_data[60], match_data[56]]],
+        [[match_data[63], match_data[62]]],
+        [match_data[59], match_data[61], match_data[58]],
+        [match_data[51], match_data[50], match_data[54], match_data[55]]]
+    let i = 0;
+
+    while (i < bracket_list.length) {
+        console.log(bracket_list[i]);
+        i++;
+    }
 
     let dimensions = []
     // let l = JSON.parse('./data.json');
