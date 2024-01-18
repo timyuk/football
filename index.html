@@ -137,10 +137,30 @@
 <!--            {% endfor %}-->
 <!--        </div>-->
     </div>
+    <div class = "statistics_container">
+      <div class="match_teams" id = "match_teams">
+
+      </div>
+      <div class="match_statistics statistics" id = "match_team_statistics">
+
+      </div>
+      <div class="teams_statistics statistics">
+        Команды тут
+      </div>
+      <div class="history_statistics statistics">
+        Хисторикал тут
+      </div>
+</div>
 <!--    {% include 'main/includes/statistics.html' %}-->
 
 </body>
 <script>
+     let body = document.getElementsByTagName('body')[0]
+     let svg_node = document.createElementNS('http://www.w3.org/2000/svg','svg');
+
+     svg_node.setAttribute('width','100%')
+     svg_node.setAttribute('height','100%')
+     body.insertBefore(svg_node, body.firstChild)
 
     async function main(){
         let response = await fetch('match_data.json')
@@ -163,15 +183,35 @@
             round.classList.add('round')
             round.classList.add('round_'+(i+1))
             while (j < bracket_list[i].length){
+
+                if (counter === 7){
+                    let not_game = document.createElement('div')
+                    not_game.classList.add('game', 'not_visible')
+                    not_game.innerHTML = "<div class=\"team\">Final Winner</div><div class=\"team\">Final Loser</div>"
+                    round.appendChild(not_game)
+
+                }
                 console.log(bracket_list[i][j])
                 let game = document.createElement('div')
                 game.classList.add('game')
                 game.classList.add('game_'+(counter+1))
+                game.id = 'game_'+(counter+1)
                 let game_info = document.createElement('div')
                 game_info.classList.add('game_info')
                 let phase = document.createElement('div')
                 phase.classList.add('phase')
-                phase.innerText = 'PLACEHOLDER'
+                if (i === 4 || i ===0) {
+                    phase.innerText = 'ROUND OF 16'
+                } else if ((i===3 || i === 1) && (j !== 1)) {
+                    phase.innerText = 'QUARTERFINAL'
+                } else if ((i===3 || i === 1) && (j === 1)) {
+                    phase.innerText = 'SEMIFINAL'
+                } else if ((i===2) && (j === 0)) {
+                    phase.innerText = 'FINAL'
+                } else if ((i===2) && (j === 1)) {
+                    phase.innerText = '3RD PLACE'
+                }
+
                 game_info.appendChild(phase)
                 game.appendChild(game_info)
 
@@ -215,14 +255,201 @@
                 game.appendChild(team2)
 
                 round.appendChild(game)
+
                 j++
                 counter++
             }
             bracket.appendChild(round)
             i++;
         }
+
+
+        i = 0;
+        counter = 1
+        while (i < bracket_list.length) {
+            let j = 0;
+            while (j < bracket_list[i].length) {
+                let data = bracket_list[i][j]
+                const current_node = document.getElementById('game_' + (counter))
+                var rect = current_node.getBoundingClientRect();
+                dimensions.push([(rect.right + rect.left)/2, (rect.top + rect.bottom)/2])
+                current_node.addEventListener('click', function () {
+                    update_graphs(data)
+                })
+                counter++
+                j++
+            }
+            i++
+        }
+
+        render_line(dimensions[0], dimensions[4])
+        render_line(dimensions[1], dimensions[4])
+        render_line(dimensions[2], dimensions[6])
+        render_line(dimensions[3], dimensions[6])
+        render_line(dimensions[4], dimensions[5])
+        render_line(dimensions[6], dimensions[5])
+        render_line(dimensions[5], dimensions[7])
+        render_line(dimensions[7], dimensions[10])
+        render_line(dimensions[10], dimensions[9])
+        render_line(dimensions[10], dimensions[11])
+        render_line(dimensions[9], dimensions[12])
+        render_line(dimensions[9], dimensions[13])
+        render_line(dimensions[11], dimensions[14])
+        render_line(dimensions[11], dimensions[15])
+
+        console.log(dimensions)
+
+
     }
     main()
+    function render_line(first_block, second_block){
+            x1 = first_block[0]
+            y1 = first_block[1] +document.documentElement.scrollTop
+            x2 = second_block[0]
+            y2 = second_block[1] +document.documentElement.scrollTop
+            let line_node = document.createElementNS('http://www.w3.org/2000/svg','line');
+            line_node.setAttribute('x1',x1)
+            line_node.setAttribute('y1',y1)
+            line_node.setAttribute('x2', x2)
+            line_node.setAttribute('y2', y2)
+            line_node.setAttribute('stroke', 'black')
+            svg_node.appendChild(line_node)
+        }
+    async function update_graphs(current_data){
+        const match_teams = document.getElementById('match_teams')
+        match_teams.innerHTML = '';
+        const country_home_node = document.createElement("p");
+        const country_away_node = document.createElement("p");
+        const vs_node = document.createElement("p");
+        country_home_node.innerText = current_data.home_team
+        country_away_node.innerText = current_data.away_team
+        vs_node.innerText = "vs"
+        vs_node.classList.add('vs_node')
+        country_home_node.classList.add('country_home_node')
+        country_away_node.classList.add('country_away_node')
+        match_teams.appendChild(country_home_node)
+        match_teams.appendChild(vs_node)
+        match_teams.appendChild(country_away_node)
+
+
+        const match_team_statistics = document.getElementById('match_team_statistics')
+        match_team_statistics.innerHTML = '';
+
+
+
+        const bidir = get_bidir(current_data)
+
+        match_team_statistics.appendChild(bidir)
+    }
+
+
+
+    function change_title(){
+
+    }
+    function get_bidir_line(left_width, left_inner_width, right_width, right_inner_width, left_text, right_text){
+        console.log(left_text)
+        const bidir_line = document.createElement("div")
+        bidir_line.classList.add('bidir_line')
+
+        const bidir_container_left = document.createElement("div")
+        bidir_container_left.classList.add('bidir_container_left')
+
+        const bidir_container_right = document.createElement("div")
+        bidir_container_right.classList.add('bidir_container_right')
+
+        const bidir_left = document.createElement("div")
+        bidir_left.classList.add('bidir_left')
+        bidir_left.style.width = left_width + '%'
+
+        const bidir_right = document.createElement("div")
+        bidir_right.classList.add('bidir_right')
+        bidir_right.style.width = right_width + '%'
+
+
+        const bidir_inner_left = document.createElement("div")
+        bidir_inner_left.classList.add('bidir_inner_left')
+        bidir_inner_left.style.width = left_inner_width + '%'
+
+        const bidir_inner_right = document.createElement("div")
+        bidir_inner_right.classList.add('bidir_inner_right')
+        bidir_inner_right.style.width = right_inner_width + '%'
+
+
+        const bidir_title_left = document.createElement("div")
+        bidir_title_left.classList.add('bidir_title_left')
+        bidir_title_left.innerHTML = left_text
+
+        const bidir_title_right = document.createElement("div")
+        bidir_title_right.classList.add('bidir_title_right')
+        bidir_title_right.innerHTML = right_text
+
+
+        bidir_left.appendChild(bidir_inner_left)
+        bidir_right.appendChild(bidir_inner_right)
+        bidir_container_left.appendChild(bidir_title_left)
+        bidir_container_left.appendChild(bidir_left)
+        bidir_container_right.appendChild(bidir_title_right)
+        bidir_container_right.appendChild(bidir_right)
+        bidir_line.appendChild(bidir_container_left)
+        bidir_line.appendChild(bidir_container_right)
+        return bidir_line
+    }
+
+    function get_bidir(current_data){
+        const bidir = document.createElement("div")
+        bidir.classList.add('bidir')
+
+
+
+        const possession_title = get_bidir_title('Possession')
+        const possession_line = get_perc_line()
+        bidir.appendChild(possession_title)
+
+        var left_text = current_data.home_possession +'%'
+        var right_text = current_data.away_possession + '%'
+        bidir.appendChild(get_bidir_line(100, current_data.home_possession, 100, current_data.away_possession, left_text, right_text))
+
+        const passes_title = get_bidir_title('Successful Passes')
+        const passes_line = get_number_line(current_data.home_attempted_pases, current_data.away_attempted_pases, current_data.home_completed_passes, current_data.away_completed_passes)
+
+        bidir.appendChild(passes_title)
+        bidir.appendChild(passes_line)
+
+
+        return bidir
+    }
+
+    function get_number_line(home_total, away_total, home_succ, away_succ ){
+
+        max_value = Math.max(home_total, away_total)
+        let proc_all_left = Math.round(100*(home_total/max_value))
+        let proc_all_right =  Math.round(100*(away_total/max_value))
+        let proc_from_left = Math.round(100*(home_succ/home_total))
+        let proc_from_right = Math.round(100*(away_succ/away_total))
+
+        var left_text =  home_succ + '/' + home_total + ' - ' + proc_from_left+'%'
+        var right_text = away_succ + '/' + away_total + ' - ' +proc_from_right + '%'
+        return get_bidir_line(proc_all_left, proc_from_left, proc_all_right, proc_from_right, left_text, right_text)
+    }
+    function get_perc_line(home_total, away_total, home_succ, away_succ ){
+
+        max_value = Math.max(home_total, away_total)
+        let proc_all_left = Math.round(100*(home_total/max_value))
+        let proc_all_right =  Math.round(100*(away_total/max_value))
+        let proc_from_left = Math.round(100*(home_succ/home_total))
+        let proc_from_right = Math.round(100*(away_succ/away_total))
+
+        var left_text =  home_succ + '/' + home_total + ' - ' + proc_from_left+'%'
+        var right_text = away_succ + '/' + away_total + ' - ' +proc_from_right + '%'
+        return get_bidir_line(proc_all_left, proc_from_left, proc_all_right, proc_from_right, left_text, right_text)
+    }
+    function get_bidir_title(title){
+        const title_node = document.createElement("div")
+        title_node.innerText = title
+        title_node.classList.add('bidir_title')
+        return title_node
+    }
     let dimensions = []
     // let l = JSON.parse('./data.json');
     // console.log(l)
