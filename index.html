@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="bracket">
+    <div class="bracket" id = 'bracket'>
 <!--        <div class="round">-->
 <!--            {% for game in games.1 %}-->
 <!--                <div class="game game_{{game.order}}" id = "game_{{game.order}}">-->
@@ -142,26 +142,87 @@
 </body>
 <script>
 
-    const match_data = (async function some_func(){
+    async function main(){
         let response = await fetch('match_data.json')
-        var match_data = response.json()
-        return match_data
-    })();
-    console.log(match_data)
-    //
-    //
-    var bracket_list = [[match_data[48], match_data[49], match_data[52], match_data[53]],
-        [[match_data[57], match_data[60], match_data[56]]],
-        [[match_data[63], match_data[62]]],
-        [match_data[59], match_data[61], match_data[58]],
-        [match_data[51], match_data[50], match_data[54], match_data[55]]]
-    let i = 0;
+        var match_data = await response.json()
+        console.log(match_data)
 
-    while (i < bracket_list.length) {
-        console.log(bracket_list[i]);
-        i++;
+    //
+    //
+        var bracket_list = [[match_data[48], match_data[49], match_data[52], match_data[53]],
+            [match_data[57], match_data[60], match_data[56]],
+            [match_data[63], match_data[62]],
+            [match_data[59], match_data[61], match_data[58]],
+            [match_data[51], match_data[50], match_data[54], match_data[55]]]
+        let i = 0;
+        let bracket = document.getElementById('bracket')
+        let counter = 0
+        while (i < bracket_list.length) {
+            let j = 0;
+            let round = document.createElement('div')
+            round.classList.add('round')
+            round.classList.add('round_'+(i+1))
+            while (j < bracket_list[i].length){
+                console.log(bracket_list[i][j])
+                let game = document.createElement('div')
+                game.classList.add('game')
+                game.classList.add('game_'+(counter+1))
+                let game_info = document.createElement('div')
+                game_info.classList.add('game_info')
+                let phase = document.createElement('div')
+                phase.classList.add('phase')
+                phase.innerText = 'PLACEHOLDER'
+                game_info.appendChild(phase)
+                game.appendChild(game_info)
+
+                let team1 = document.createElement('div')
+                team1.classList.add('team', 'team_home', 'winner')
+
+                let flag1 = document.createElement('div')
+                flag1.classList.add('flag')
+                flag1.style.backgroundImage = "url('https://www.worldometers.info/img/flags/us-flag.gif')"
+                team1.appendChild(flag1)
+
+                let country1 = document.createElement('div')
+                country1.classList.add('country')
+                country1.innerText = bracket_list[i][j].home_team
+                team1.appendChild(country1)
+
+                let score1 = document.createElement('div')
+                score1.classList.add('score')
+                score1.innerText = 3
+                team1.appendChild(score1)
+                game.appendChild(team1)
+
+                let team2 = document.createElement('div')
+                team2.classList.add('team', 'team_away', 'winner')
+
+                let flag2 = document.createElement('div')
+                flag2.classList.add('flag')
+                flag2.style.backgroundImage = "url('https://www.worldometers.info/img/flags/us-flag.gif')"
+                team2.appendChild(flag2)
+
+                let country2 = document.createElement('div')
+                country2.classList.add('country')
+                country2.innerText = bracket_list[i][j].away_team
+                team2.appendChild(country2)
+
+                let score2 = document.createElement('div')
+                score2.classList.add('score')
+                score2.innerText = 3
+                team2.appendChild(score2)
+                game.appendChild(team1)
+                game.appendChild(team2)
+
+                round.appendChild(game)
+                j++
+                counter++
+            }
+            bracket.appendChild(round)
+            i++;
+        }
     }
-
+    main()
     let dimensions = []
     // let l = JSON.parse('./data.json');
     // console.log(l)
