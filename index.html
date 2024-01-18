@@ -144,9 +144,12 @@
     fetch('./match_data.json')
     .then((response) => response.json())
     .then((json) => console.log(json));
-    let response = await fetch('match_data.json')
-    var match_data = response.json()
-    console.log(match_data)
+    const mydata = (async function some_func(){
+        let response = await fetch('match_data.json')
+        var match_data = response.json()
+        return match_data
+    })();
+    console.log(mydata)
     //
     //
     // var bracket_list = [[match_data[48], match_data[49], match_data[52], match_data[53]],
