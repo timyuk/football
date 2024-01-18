@@ -64,9 +64,11 @@ body {
 .flag {
     height: 20px;
     width: 30px;
-    background-size: cover;
-    border: 1px solid black;
+    background-size: contain;
+    /*border: 1px solid black;*/
     box-sizing: border-box;
+    background-position: center center;
+    background-repeat: no-repeat;
 }
 .country{
     margin-left: 5px;
@@ -91,7 +93,6 @@ body {
 }
 
 .statistics{
-    height: 100px;
     width: 100%;
     background-color: #ddd;
     margin-top: 10px;
@@ -126,4 +127,80 @@ body {
 }
 svg {
     position: absolute;
+}
+.bidir{
+    width: 50%;
+    margin: auto;
+}
+.bidir_line {
+    height: 35px;
+    /*background-color: #000;*/
+    display: flex;
+    width: 100%;
+    position: relative;
+}
+
+.bidir_container_right, .bidir_container_left{
+    width: 49%;
+    height: 100%;
+    /*background-color: #f1f;*/
+    position: absolute;
+    margin-left: 1%;
+    margin-right: 1%;
+    bottom: 0;
+}
+.bidir_left, .bidir_right{
+    bottom: 0;
+    height: 20px;
+    width: 100%;
+    background-color: #fff;
+    position: absolute;
+
+}
+.bidir_title_left, .bidir_title_right {
+    position: absolute;
+    font-size: 12px;
+}
+
+
+.bidir_container_right{
+    left: 50%;
+}
+.bidir_right{
+    left: 0;
+    border-radius: 12px 12px 12px 12px;
+}
+.bidir_title_right{
+    left:1%
+}
+.bidir_container_left{
+    right: 50%;
+}
+.bidir_left{
+    right: 0;
+    border-radius: 12px 12px 12px 12px;
+}
+.bidir_title_left{
+    right:1%
+}
+.bidir_inner_left, .bidir_inner_right {
+    position: absolute;
+    height: 100%;
+    background-color: darkgreen;
+}
+.bidir_inner_left {
+    right: 0;
+    border-radius: 12px 12px 12px 12px;
+}
+.bidir_inner_right {
+    left: 0;
+    border-radius: 12px 12px 12px 12px;
+
+}
+
+.bidir_title{
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    margin-top: 5px;
 }
